@@ -182,6 +182,7 @@
             "NP": [],
             "GPC": [],
             "RdRp": []
-        }
+        },
+        "organism": "cchf"
     }
 }
