@@ -1,5 +1,5 @@
 {
-    "LOC_001YFR4.1": {
+    "LOC_000S4ZC.1": {
         "metadata": {
             "authors": "M. Ammar, M. Salman, M. Umair, Q. Ali, R. Hakim, S.A. Haider, Z. Jamal",
             "host_age": null,
@@ -13,7 +13,7 @@
             "is_lab_host": null,
             "sample_type": null,
             "body_product": null,
-            "display_name": "Pakistan/LOC_001YFR4.1/2023-08-26",
+            "display_name": "Pakistan/LOC_000S4ZC.1/2023-08-26",
             "food_product": null,
             "geo_loc_city": null,
             "geo_loc_site": null,
@@ -127,17 +127,17 @@
             "consensus_sequence_software_name": null,
             "consensus_sequence_software_version": null,
             "raw_sequence_data_processing_method": null,
-            "accession": "LOC_001YFR4",
+            "accession": "LOC_000S4ZC",
             "version": 1,
             "submissionId": "accession",
-            "accessionVersion": "LOC_001YFR4.1",
+            "accessionVersion": "LOC_000S4ZC.1",
             "isRevocation": false,
             "submitter": "testuser",
             "groupId": 2,
             "groupName": "Dummy Organisation",
             "submittedDate": "2024-08-14",
-            "submittedAtTimestamp": 1723644424,
-            "releasedAtTimestamp": 1723644429,
+            "submittedAtTimestamp": 1723647193,
+            "releasedAtTimestamp": 1723647540,
             "releasedDate": "2024-08-14",
             "versionStatus": "LATEST_VERSION",
             "dataUseTerms": "OPEN",
