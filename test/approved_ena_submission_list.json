@@ -1,7 +1,7 @@
 {
     "LOC_000RBTK.1": {
         "metadata": {
-            "authors": "M. Ammar, M. Salman, M. Umair, Q. Ali, R. Hakim, S.A. Haider, Z. Jamal",
+            "authors": "Ammar, M.; Salman, M.; Umair, M.; Ali, Q,; Hakim, R.; Haider, S.A.; Jamal, Z.",
             "hostAge": null,
             "cellLine": null,
             "hostRole": null,
@@ -156,7 +156,7 @@
     "LOC_000RBUH.1": {
         "metadata": {
             "length": 18996,
-            "authors": "Goba et al",
+            "authors": "Goba, A.",
             "hostAge": null,
             "cellLine": null,
             "hostRole": null,
