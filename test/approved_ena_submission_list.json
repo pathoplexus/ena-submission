@@ -1,5 +1,5 @@
 {
-    "LOC_000M0S6.2": {
+    "LOC_0008SZT.2": {
         "metadata": {
             "ampliconPcrPrimerScheme": null,
             "ampliconSize": null,
@@ -27,7 +27,7 @@
             "diagnosticMeasurementValue": null,
             "diagnosticTargetGeneName": null,
             "diagnosticTargetPresence": null,
-            "displayName": "Pakistan/LOC_000M0S6.1/2023-08-26",
+            "displayName": "Pakistan/LOC_0008SZT.1/2023-08-26",
             "earliestReleaseDate": "2025-02-09",
             "environmentalMaterial": null,
             "environmentalSite": null,
@@ -134,10 +134,10 @@
             "totalUnknownNucs_S": 33,
             "travelHistory": null,
             "versionComment": "OR964915.1,OR964926.1,OR964937.1",
-            "accession": "LOC_000M0S6",
+            "accession": "LOC_0008SZT",
             "version": 2,
             "submissionId": "test_NIHPAK-19",
-            "accessionVersion": "LOC_000M0S6.2",
+            "accessionVersion": "LOC_0008SZT.2",
             "isRevocation": false,
             "submitter": "testuser",
             "groupId": 2,
