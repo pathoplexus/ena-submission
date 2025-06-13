@@ -13,14 +13,10 @@ After sequences have been uploaded to the database the corresponding files can b
 You can use the following `jq` to use the `submissionId` as fallback for the `specimenCollectorSampleId` if the latter is not present:
 
 ```sh
-FILE=test/approved_ena_submission_list.json \
+FILE="test/approved_ena_submission_list.json"
 jq '
   map_values(
-    if .metadata.specimenCollectorSampleId == null then
-      .metadata.specimenCollectorSampleId = .metadata.submissionId
-    else
-      .
-    end
+    .metadata.specimenCollectorSampleId //= .metadata.submissionId
   )
-' $FILE | sponge $FILE
+' "$FILE" | sponge "$FILE"
 ```
