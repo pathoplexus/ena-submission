@@ -1,5 +1,5 @@
-[
-  {
+{
+  "PP_002YWDD.1": {
     "metadata": {
       "ampliconPcrPrimerScheme": null,
       "ampliconSize": null,
@@ -133,7 +133,7 @@
     },
     "organism": "mpox"
   },
-  {
+  "PP_002YWEB.1": {
     "metadata": {
       "ampliconPcrPrimerScheme": null,
       "ampliconSize": null,
@@ -267,7 +267,7 @@
     },
     "organism": "mpox"
   },
-  {
+  "PP_002YWF9.1": {
     "metadata": {
       "ampliconPcrPrimerScheme": null,
       "ampliconSize": null,
@@ -401,7 +401,7 @@
     },
     "organism": "mpox"
   },
-  {
+  "PP_002YWG7.1": {
     "metadata": {
       "ampliconPcrPrimerScheme": null,
       "ampliconSize": null,
@@ -535,7 +535,7 @@
     },
     "organism": "mpox"
   },
-  {
+  "PP_002YWH4.1": {
     "metadata": {
       "ampliconPcrPrimerScheme": null,
       "ampliconSize": null,
@@ -669,7 +669,7 @@
     },
     "organism": "mpox"
   },
-  {
+  "PP_002YWJ2.1": {
     "metadata": {
       "ampliconPcrPrimerScheme": null,
       "ampliconSize": null,
@@ -803,4 +803,4 @@
     },
     "organism": "mpox"
   }
-]
+}
