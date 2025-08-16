@@ -6,7 +6,7 @@ This repo should be used for uploading sequences that have been approved for rel
 
 The `loculus-get-ena-submission-list-cronjob` should generate a file that is the correct format. If you are ok with the contents of this file you can rename the file as `approved_ena_submission_list.json` and upload it to the `approved` folder. (See the `test` folder for an example).
 
-Note the `test` folder can be used to test your submissions on PPX staging - it will submit the sequences to the ENA dev website using the ENA broker account (we do not have a separate test account the only difference is that submissions are made to the ENA dev instance but all credentials are the same prod).
+Note the `test` folder can be used to test your submissions on PPX staging. Staging reads sequences in the `test` folder and submits them to the ENA dev website using the ENA broker account (we do not have a separate test account the only difference is that submissions are made to the ENA dev instance but all credentials are the same as prod).
 
 After sequences have been uploaded to the database the corresponding files can be removed, but you can also append new sequences to the `approved_ena_submission_list.json`.
 
