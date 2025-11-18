@@ -22,3 +22,15 @@ jq '
   )
 ' "$FILE" | sponge "$FILE"
 ```
+
+# Revoked Sequences
+
+If revoked sequences need to be suppressed on ENA this must be done by sending an email to the ENA help-desk. Then, a list of suppressed sequences (PPX accessionVersion) should be added to the `suppressed/ppx-accessions-suppression-list.txt` file (this just stops us receiving notifications about sequences that need to be suppressed).
+
+If `approved_ena_submission_list.json` contains sequences to be suppressed run 
+```
+python3 add_to_suppressed.py input.json
+```
+to add the accessionVersions to the suppression list.
+
+
