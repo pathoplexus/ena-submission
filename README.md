@@ -10,6 +10,11 @@ Note the `test` folder can be used to test your submissions on PPX staging. Stag
 
 After sequences have been uploaded to the database the corresponding files can be removed, but you can also append new sequences to the `approved_ena_submission_list.json`.
 
+## IMPORTANT CHECKS
+
+If you are submitting an assembly with ena-specific metadata fields check that the bioproject, biosamples and raw reads accessions are valid. There should be ONE unique biosample FOR EACH sequence. Submitting sequences with the wrong biosample will lead to previous submissions linked to that biosample being incorrectly revised.
+If you submit sequences with the wrong biosamples they will need to be resubmitted with the correct biosample. This can be accomplished by deleting the previous submissions from the ena deposition DB. However, the sequence that was incorrectly revised will have to be resubmitted by generating the submission files in dry-run.
+
 ## Snippets
 
 You can use the following `jq` to use the `submissionId` as fallback for the `specimenCollectorSampleId` if the latter is not present:
