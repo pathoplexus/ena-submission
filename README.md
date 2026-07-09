@@ -12,21 +12,16 @@ After sequences have been uploaded to the database the corresponding files can b
 
 ## IMPORTANT CHECKS
 
-If you are submitting an assembly with ena-specific metadata fields check that the bioproject, biosamples and raw reads accessions are valid. There should be ONE unique biosample FOR EACH sequence. Submitting sequences with the wrong biosample will lead to previous submissions linked to that biosample being incorrectly revised.
-If you submit sequences with the wrong biosamples they will need to be resubmitted with the correct biosample. This can be accomplished by deleting the previous submissions from the ena deposition DB. However, the sequence that was incorrectly revised will have to be resubmitted by generating the submission files in dry-run.
+There have been cases where the formatting of names or institutions have been messed up, we have found that running `jq` over the file often will fix these mis-formatted names but it is still good to check manually: 
 
-## Snippets
-
-You can use the following `jq` to use the `submissionId` as fallback for the `specimenCollectorSampleId` if the latter is not present:
-
-```sh
-FILE="test/approved_ena_submission_list.json"
-jq '
-  map_values(
-    .metadata.specimenCollectorSampleId //= .metadata.submissionId
-  )
-' "$FILE" | sponge "$FILE"
 ```
+FILE="test/approved_ena_submission_list.json"
+jq '' "$FILE" | sponge "$FILE"
+```
+
+If you are submitting an assembly with ena-specific metadata fields check that the bioproject, biosamples and raw reads accessions are valid. There should be **ONE unique biosample FOR EACH sequence**. Submitting sequences with the wrong biosample will lead to previous submissions linked to that biosample being incorrectly revised.
+
+If you submit sequences with the wrong biosamples they will need to be resubmitted with the correct biosample. This can be accomplished by deleting the previous submissions from the ena deposition DB. However, the sequence that was incorrectly revised will have to be resubmitted by generating the submission files in dry-run.
 
 # Revoked Sequences
 
