@@ -44,7 +44,7 @@ The middle "not so good" example above was rewritten to: "Assemblies (RSV, Ebola
 
 Whoever is on ENA duty goes through all open issues **at least once a week**, checks status, and updates each issue accordingly.
 
-Additionally, they should check the `pathoplexus-notifications` slack channel for any new sequences to submit to ENA. Any alerts about submissions that are in an error state should also be reviewed (this will most likely require checking the ena submission database for the error status).
+Additionally, they should check the `pathoplexus-notifications` slack channel **daily** for any new sequences to submit to ENA. Any alerts about submissions that are in an error state or stuck in submitting state for too long should also be reviewed (this will most likely require checking the ena submission database for the error status).
 
 ## Always state the next action
 
