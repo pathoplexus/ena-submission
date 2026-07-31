@@ -40,12 +40,6 @@ Titles should be specific enough to tell what's going on at a glance, and update
 
 The middle "not so good" example above was rewritten to: "Assemblies (RSV, Ebola, ANDV) submitted 2026-07-23/2026-07-24 waiting for assembly accessions".
 
-## Weekly review
-
-Whoever is on ENA duty goes through all open issues **at least once a week**, checks status, and updates each issue accordingly.
-
-Additionally, they should check the `pathoplexus-notifications` slack channel **daily** for any new sequences to submit to ENA. Any alerts about submissions that are in an error state or stuck in submitting state for too long should also be reviewed (this will most likely require checking the ena submission database for the error status).
-
 ## Always state the next action
 
 Every state change - essentially every comment - should say what's expected or hoped for, and by when.

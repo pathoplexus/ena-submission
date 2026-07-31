@@ -1,0 +1,89 @@
+## ENA Ticket Duty Standard Operating Practice
+
+## Weekly review
+
+Whoever is on ENA duty should go through all open issues **at least once a week**, check the status of open issues, and update each issue accordingly. See the ISSUE_TRACKING.md for details on how to scope issues.
+
+Additionally, they should check the `pathoplexus-notifications` slack channel **daily** for any new sequences to submit to ENA. Any alerts about submissions that are in an error state or stuck in submitting state for too long should also be reviewed (this will most likely require checking the ena submission database for the error status).
+
+## #pathoplexus-notifications channel review
+
+Once a day (at midnight) the `loculus-get-ena-submission-list-cronjob` will run and send us a JSON file with details of the sequence to submit to ENA in the `#pathoplexus-notifications channel`. This will be in the format: [Slack](https://loculus.slack.com/archives/C07NDUW0171/p1763944251199129). Follow the instructions in the notification.
+
+The cronjob returns three types of messages:
+
+1. Standard Submission: A messaged titled `ENA Submission pipeline wants to submit ... sequences.` with a zip folder of sequence data to submit in JSON format.
+2. Submission with ENA-related metadata: A message titled `ENA Submission pipeline found ... sequences with ena-specific-metadata fields and not submitted by us or ingested from the INSDC, this might be a user error. If you think this is accurate ensure bioproject and biosample are set correctly. Bioprojects should be public and SRA accessions should also include bioprojects and biosamples.` with a zip folder. "ENA-related" fields  are e.g. raw reads accession, bioproject, biosample accession, you may need to validate these fields, follow the instructions in the notification and look at the Important checks below.
+3. Sequence Revocation: A message titled: `ENA Submission pipeline found ... sequences that have been revoked investigate if these need to be suppressed on ENA.`
+
+Additionally, the ENA submission pod will send slack notifications about sequences that are in an error state or are stuck in a submitting or waiting state for too long. Biosample and Bioproject submission should be very fast and bioproject and biosamples should receive accessions immediately. Assemblies do not immediately receive an accession but must wait to be processed by ENA, typically this takes under 48h, although this can take up to a week when ENA is overloaded typically if an assembly takes longer than 48h to be accessioned it will require manual intervention.
+
+4. Handling Sequences With HAS_ERRORS or stuck in WAITING state: A message in the form of `ENA Submission pipeline found 154 entries in assembly_table in status WAITING for over 48h. First accessions: ...` or `ENA Submission pipeline found 128 entries in sample_table in status HAS_ERRORS or SUBMITTING for over 15m`. 
+
+### 1. Standard Submission
+- Download the JSON file from slack notification, check data looks reasonable.
+- There have been cases where the formatting of names or institutions have been messed up, we have found that running `jq` over the file often will fix these mis-formatted names but it is still good to check manually: 
+
+```
+FILE="test/approved_ena_submission_list.json"
+jq '' "$FILE" | sponge "$FILE"
+```
+
+- Upload the file to `approved/approved_ena_submission_list.json` to directly submit to production or first do a test (see [Testing on Staging](#testing-on-staging)) if you are uncertain.
+
+### 2. Submission with ENA-related metadata
+
+If you are submitting an assembly with ena-specific metadata fields check which ena-specific metadata fields have been supplied. - INSDC accessions (assembly accessions) should never be supplied by the user - this is an indication the sequences already exist on the INSDC (and maybe need to be revoked on PPX) 
+- The bioproject may be supplied on its own, check that the bioproject is not an umbrella bioproject and that the accession is valid (see https://github.com/loculus-project/loculus/issues/6859 for details). The pipeline will retry submission if the bioproject is not yet live on ENA.
+- Bioproject, biosample and raw reads (SRA) accession should have been supplied together (raw reads are always submitted with a **unique** biosample and a bioproject - so ensure these are provided or contact the submitter). Check the accessions are valid, again the pipeline will retry submissions if the accessions are not live.
+- Other combinations should probably not be allowed, ask if they come up!
+
+There should be **ONE unique biosample FOR EACH sequence**. Submitting sequences with the wrong biosample will lead to previous submissions linked to that biosample being incorrectly revised.
+
+If you submit sequences with the wrong biosamples they will need to be resubmitted with the correct biosample. This can be accomplished by deleting the previous submissions from the ena deposition DB. However, the sequence that was incorrectly revised will have to be resubmitted by generating the submission files in dry-run.
+
+### 3. Sequence Revocation
+
+If revoked sequences need to be suppressed on ENA this must be done by filing a ticket with the ENA help-desk (via https://www.ebi.ac.uk/ena/browser/support). Then, a list of suppressed sequences (PPX accessionVersion) should be added to the `suppressed/ppx-accessions-suppression-list.txt` file (this just stops us receiving notifications about sequences that need to be suppressed).
+
+If `approved_ena_submission_list.json` contains sequences to be suppressed run 
+```
+python3 add_to_suppressed.py input.json
+```
+to add the accessionVersions to the suppression list.
+
+### 4. Handling Sequences With HAS_ERRORS or stuck in WAITING state
+
+If assemblies are in state WAITING for over 5 days we need to file a ticket with ENA.
+
+- Get the ENA-given submission ERZ-ACCESSIONs and the actual error message (in case of state HAS_ERRORS) from the db. You will need log into the db for this, I typically do this with port-forwarding: [Slack](https://loculus.slack.com/archives/C07HW5NAL03/p1724960217646709)
+
+```sql
+SELECT * FROM ena_deposition_schema.assembly_table
+WHERE status = 'WAITING'
+AND started_at < NOW() - INTERVAL '2 days';
+```
+
+- If no ERZ-ACCESSION has been assigned and the error looks like an intermittent ENA error  i.e. `ERROR: Failed to connect to FTP server. Failed to upload files to server because of a system error. ERROR: FTP service authentication error.` the pipeline will retry the submission automatically. (You can also trigger a retry manually by setting the state to READY)
+
+- Check the state of the submissions on [ENA](https://www.ebi.ac.uk/ena/submit/webin/login) - sign in using the broker account (be careful as you have full rights using this account!!)
+
+- If you have reached this point in general you will need to file a ticket with the ENA help-desk (via https://www.ebi.ac.uk/ena/browser/support). We have been asked to do this instead of sending emails to ENA directly. (identify yourself as a broker and sign the email as on behalf of the Pathoplexus team), add our slack channel in CC, see an example here: [Slack](https://loculus.slack.com/archives/C0757PTR607/p1785512654473749)
+
+- If an ERZ-accession has been assigned you can not retry submissions via the pipeline. This is quite complicated reach out to Anya or Cornelius if you think you need to do this. You will need to resubmit the sequences as a revision using the [dry-run script](https://github.com/loculus-project/loculus/blob/main/ena-submission/scripts/deposition_dry_run.py) (you need a new assembly identifier for revisions) you will also need to get the PPX ena-deposition config to produce the correct flatfiles for submission.
+
+## Testing on Staging
+
+### Submissions
+
+- Do a db clone to ensure sequences you are interested in are also on staging. 
+- Upload the JSON file to `test/approved_ena_submission_list.json`. 
+- Confirm that the ENA submission pod completed successfully  (can view logs in argocd, results should also be uploaded to Loculus and should be seen on the page of the sequences you submitted to ENA - note assemblies will not be accessioned so you will only see the bioproject and biosample accessions on the page after a successful submission, you should however see in the logs that the assembly submission was successful and is in state WAITING).
+
+### DB Surgeries
+
+As a rule all db surgeries should first be tested on staging and every command should also be documented in a slack issue - ensure no passwords or usernames are added to the issue!
+
+- Do a db clone to ensure sequences you are interested in are also on staging. 
+- Port forward to staging database (see [Slack](https://loculus.slack.com/archives/C07HW5NAL03/p1724960217646709))
+- Run your commands and confirm the output.
