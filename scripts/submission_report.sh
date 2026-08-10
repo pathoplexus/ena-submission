@@ -15,6 +15,7 @@ FIELDS=(
   bioprojectAccession
   biosampleAccession
   insdcAccessionBase
+  insdcVersion
   insdcAccessionFull
   insdcRawReadsAccession
   gisaidIsolateId
