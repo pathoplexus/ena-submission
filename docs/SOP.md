@@ -6,7 +6,7 @@ Whoever is on ENA duty should go through all open issues **at least once a week*
 
 Additionally, they should check the `pathoplexus-notifications` slack channel **daily** for any new sequences to submit to ENA. Any alerts about submissions that are in an error state or stuck in submitting state for too long should also be reviewed (this will most likely require checking the ena submission database for the error status).
 
-## #pathoplexus-notifications channel review
+## `#pathoplexus-notifications` channel review
 
 Once a day (at midnight) the `loculus-get-ena-submission-list-cronjob` will run and send us a JSON file with details of the sequence to submit to ENA in the `#pathoplexus-notifications channel`. This will be in the format: [Slack](https://loculus.slack.com/archives/C07NDUW0171/p1763944251199129). Follow the instructions in the notification.
 
@@ -33,9 +33,12 @@ jq '' "$FILE" | sponge "$FILE"
 
 ### 2. Submission with ENA-related metadata
 
-If you are submitting an assembly with ena-specific metadata fields check which ena-specific metadata fields have been supplied. - INSDC accessions (assembly accessions) should never be supplied by the user - this is an indication the sequences already exist on the INSDC (and maybe need to be revoked on PPX) 
+If you are submitting an assembly with ena-specific metadata fields check which ena-specific metadata fields have been supplied:
+
+- INSDC/Genbank assembly accessions (`insdcAccessionBase`, `insdcVersion` and `insdcAccessionFull`) should **never** be supplied by the user - this is an indication the sequences already exist on the INSDC (and maybe need to be revoked on PPX).
 - The bioproject may be supplied on its own, check that the bioproject is not an umbrella bioproject and that the accession is valid (see https://github.com/loculus-project/loculus/issues/6859 for details). The pipeline will retry submission if the bioproject is not yet live on ENA.
-- Bioproject, biosample and raw reads (SRA) accession should have been supplied together (raw reads are always submitted with a **unique** biosample and a bioproject - so ensure these are provided or contact the submitter). Check the accessions are valid, again the pipeline will retry submissions if the accessions are not live.
+- Bioproject, biosample and raw reads (`insdcRawReadsAccession`, the SRA accession) should have been supplied together (raw reads are always submitted with a **unique** biosample and a bioproject - so ensure these are provided or contact the submitter). Check the accessions are valid, again the pipeline will retry submissions if the accessions are not live.
+- `assemblyReferenceGenomeAccession` and `gisaidIsolateId` fields are permitted by users.
 - Other combinations should probably not be allowed, ask if they come up!
 
 There should be **ONE unique biosample FOR EACH sequence**. Submitting sequences with the wrong biosample will lead to previous submissions linked to that biosample being incorrectly revised.
