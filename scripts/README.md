@@ -50,29 +50,6 @@ and it will output a report:
     1 Example_EX0005_2026
     1 Example_EX0006_2026
 
-> specimenCollectorSampleId
-  group 101 (Example Lab A, Testland)
-    12 distinct value(s) across 12 sequence(s)
-    1 Example_TL0001_2026
-    1 Example_TL0002_2026
-    1 Example_TL0003_2026
-    1 Example_TL0004_2026
-    1 Example_TL0005_2026
-    1 Example_TL0006_2026
-    1 Example_TL0007_2026
-    1 Example_TL0008_2026
-    1 Example_TL0009_2026
-    1 Example_TL0010_2026
-    ... 2 additional value(s) omitted
-  group 102 (Example Institute B, Exampleland)
-    6 distinct value(s) across 6 sequence(s)
-    1 Example_EX0001_2026
-    1 Example_EX0002_2026
-    1 Example_EX0003_2026
-    1 Example_EX0004_2026
-    1 Example_EX0005_2026
-    1 Example_EX0006_2026
-
 ...
 ```
 
