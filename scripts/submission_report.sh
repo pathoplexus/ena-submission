@@ -38,8 +38,11 @@ for f in "${FIELDS[@]}"; do
     [.[].metadata | {group: "\(.groupId) (\(.groupName))", value: classify($f)}]
     | group_by(.group) | .[]
     | "  group \(.[0].group)",
-      ( [.[].value] | group_by(.) | sort_by(-length)
-        | "    \(length) distinct value(s) across \(map(length) | add) sequence(s)",
-          (.[0:$max] | map("    \(length) \(.[0])")[]) )' "$1"
+      ( ([.[].value] | group_by(.) | sort_by(-length)) as $values
+        | "    \($values | length) distinct value(s) across \($values | map(length) | add) sequence(s)",
+          ($values[0:$max] | map("    \(length) \(.[0])")[]),
+          (if ($values | length) > $max
+           then "    ... \(($values | length) - $max) additional value(s) omitted"
+           else empty end) )' "$1"
   echo ""
 done
