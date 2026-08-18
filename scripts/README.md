@@ -21,119 +21,58 @@ and it will output a report:
 ```
 > releasedDate
   group 101 (Example Lab A, Testland)
-    2 distinct value(s) across 3 sequence(s)
-    2 2026-05-20
-    1 2026-05-21
+    1 distinct value(s) across 12 sequence(s)
+    12 2026-05-20
   group 102 (Example Institute B, Exampleland)
-    1 distinct value(s) across 2 sequence(s)
-    2 2026-06-25
+    1 distinct value(s) across 6 sequence(s)
+    6 2026-06-25
 
 > submissionId
   group 101 (Example Lab A, Testland)
-    3 distinct value(s) across 3 sequence(s)
+    12 distinct value(s) across 12 sequence(s)
     1 Example_TL0001_2026
     1 Example_TL0002_2026
     1 Example_TL0003_2026
+    1 Example_TL0004_2026
+    1 Example_TL0005_2026
+    1 Example_TL0006_2026
+    1 Example_TL0007_2026
+    1 Example_TL0008_2026
+    1 Example_TL0009_2026
+    1 Example_TL0010_2026
+    ... 2 additional value(s) omitted
   group 102 (Example Institute B, Exampleland)
-    2 distinct value(s) across 2 sequence(s)
+    6 distinct value(s) across 6 sequence(s)
     1 Example_EX0001_2026
     1 Example_EX0002_2026
+    1 Example_EX0003_2026
+    1 Example_EX0004_2026
+    1 Example_EX0005_2026
+    1 Example_EX0006_2026
 
 > specimenCollectorSampleId
   group 101 (Example Lab A, Testland)
-    3 distinct value(s) across 3 sequence(s)
+    12 distinct value(s) across 12 sequence(s)
     1 Example_TL0001_2026
     1 Example_TL0002_2026
     1 Example_TL0003_2026
+    1 Example_TL0004_2026
+    1 Example_TL0005_2026
+    1 Example_TL0006_2026
+    1 Example_TL0007_2026
+    1 Example_TL0008_2026
+    1 Example_TL0009_2026
+    1 Example_TL0010_2026
+    ... 2 additional value(s) omitted
   group 102 (Example Institute B, Exampleland)
-    2 distinct value(s) across 2 sequence(s)
+    6 distinct value(s) across 6 sequence(s)
     1 Example_EX0001_2026
     1 Example_EX0002_2026
+    1 Example_EX0003_2026
+    1 Example_EX0004_2026
+    1 Example_EX0005_2026
+    1 Example_EX0006_2026
 
-> authors
-  group 101 (Example Lab A, Testland)
-    1 distinct value(s) across 3 sequence(s)
-    3 Example, Ann; Sample, Sam
-  group 102 (Example Institute B, Exampleland)
-    1 distinct value(s) across 2 sequence(s)
-    2 Example, Ann; Sample, Sam
-
-> authorAffiliations
-  group 101 (Example Lab A, Testland)
-    1 distinct value(s) across 3 sequence(s)
-    3 Example Lab A, Testland
-  group 102 (Example Institute B, Exampleland)
-    1 distinct value(s) across 2 sequence(s)
-    2 Example Institute B, Exampleland
-
-> bioprojectAccession
-  group 101 (Example Lab A, Testland)
-    1 distinct value(s) across 3 sequence(s)
-    3 PRJEB00000
-  group 102 (Example Institute B, Exampleland)
-    1 distinct value(s) across 2 sequence(s)
-    2 PRJEB00000
-
-> biosampleAccession
-  group 101 (Example Lab A, Testland)
-    3 distinct value(s) across 3 sequence(s)
-    1 SAMEA100000001
-    1 SAMEA100000002
-    1 SAMEA100000003
-  group 102 (Example Institute B, Exampleland)
-    2 distinct value(s) across 2 sequence(s)
-    1 SAMEA100000004
-    1 SAMEA100000005
-
-> insdcAccessionBase
-  group 101 (Example Lab A, Testland)
-    1 distinct value(s) across 3 sequence(s)
-    3 <null>
-  group 102 (Example Institute B, Exampleland)
-    1 distinct value(s) across 2 sequence(s)
-    2 <null>
-
-> insdcVersion
-  group 101 (Example Lab A, Testland)
-    1 distinct value(s) across 3 sequence(s)
-    3 <null>
-  group 102 (Example Institute B, Exampleland)
-    1 distinct value(s) across 2 sequence(s)
-    2 <null>
-
-> insdcAccessionFull
-  group 101 (Example Lab A, Testland)
-    1 distinct value(s) across 3 sequence(s)
-    3 <null>
-  group 102 (Example Institute B, Exampleland)
-    1 distinct value(s) across 2 sequence(s)
-    2 <null>
-
-> insdcRawReadsAccession
-  group 101 (Example Lab A, Testland)
-    3 distinct value(s) across 3 sequence(s)
-    1 ERR10000001
-    1 ERR10000002
-    1 ERR10000003
-  group 102 (Example Institute B, Exampleland)
-    2 distinct value(s) across 2 sequence(s)
-    1 ERR10000004
-    1 ERR10000005
-
-> gisaidIsolateId
-  group 101 (Example Lab A, Testland)
-    1 distinct value(s) across 3 sequence(s)
-    3 <null>
-  group 102 (Example Institute B, Exampleland)
-    1 distinct value(s) across 2 sequence(s)
-    2 <null>
-
-> assemblyReferenceGenomeAccession
-  group 101 (Example Lab A, Testland)
-    1 distinct value(s) across 3 sequence(s)
-    3 <null>
-  group 102 (Example Institute B, Exampleland)
-    1 distinct value(s) across 2 sequence(s)
-    2 <null>
+...
 ```
 
