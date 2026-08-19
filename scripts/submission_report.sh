@@ -8,6 +8,7 @@ fi
 # Fields to report
 FIELDS=(
   releasedDate
+  accessionVersion
   submissionId
   specimenCollectorSampleId
   authors
