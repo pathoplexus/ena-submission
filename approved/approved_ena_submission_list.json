@@ -1868,7 +1868,7 @@
       "sequencingInstrument": "Illumina iSeq 100",
       "sequencingProtocol": null,
       "signsAndSymptoms": null,
-      "specimenCollectorSampleId": "hMpxV/Pakistan/NIH-KMU-006/2024|EPI_ISL_19713336|1|2024-12-02",
+      "specimenCollectorSampleId": "NIH-KMU-006/2024",
       "specimenProcessing": null,
       "specimenProcessingDetails": null,
       "stopCodons": "OPG175:98",
