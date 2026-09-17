@@ -46,15 +46,19 @@ There should be **ONE unique biosample FOR EACH sequence**. Submitting sequences
 
 If you submit sequences with the wrong biosamples they will need to be resubmitted with the correct biosample. This can be accomplished by deleting the previous submissions from the ena deposition DB. However, the sequence that was incorrectly revised will have to be resubmitted by generating the submission files in dry-run.
 
-### 3. Sequence Revocation
+### 3. Sequence Revocation and Suppression
 
-If revoked sequences need to be suppressed on ENA this must be done by filing a ticket with the ENA help-desk (via https://www.ebi.ac.uk/ena/browser/support). Then, a list of suppressed sequences (PPX accessionVersion) should be added to the `suppressed/ppx-accessions-suppression-list.txt` file (this just stops us receiving notifications about sequences that need to be suppressed).
+If revoked sequences need to be suppressed on ENA this must be done by filing a ticket with the ENA help-desk (via https://www.ebi.ac.uk/ena/browser/support). 
+
+Then, a list of suppressed sequences (PPX accessionVersion) should be added to the `suppressed/ppx-accessions-suppression-list.txt` file (this just stops us receiving notifications about sequences that need to be suppressed).
 
 If `approved_ena_submission_list.json` contains sequences to be suppressed run 
 ```
 python3 add_to_suppressed.py input.json
 ```
 to add the accessionVersions to the suppression list.
+
+Once ENA have confirmed the suppression, request the same suppression at NCBI separately, by emailing biosamplehelp@ncbi.nlm.nih.gov. Name both the assembly and its linked biosample(s) in the request. (NCBI's EBI import pipeline queries only live records, a suppression at EBI never propagates. NCBI expect this to become unnecessary once their "livelists" sync is working.
 
 ### 4. Handling Sequences With HAS_ERRORS or stuck in WAITING state
 
