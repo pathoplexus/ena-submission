@@ -26,13 +26,13 @@ Exercises are in [ENA_Training_Exercises.md](ENA_Training_Exercises.md).
 
 2.3 Most likely a transient ENA issue. "FTP service authentication error" is in `slack_retry_substrings`, so the pipeline will reset the entry to `READY` and retry automatically (every 4h). If it keeps failing, investigate. You can also retry manually by setting the status to `READY`.
 
-2.4 A problem: file a ticket with the ENA help-desk (https://www.ebi.ac.uk/ena/browser/support). Get the ERZ accession from `assembly_table` first, identify yourself as a broker, sign on behalf of the Pathoplexus team and CC our Slack channel. Do **not** reset to `READY` - once an ERZ has been assigned it cannot be retried via the pipeline.
+2.4 A problem: file a ticket with the ENA help-desk (https://www.ebi.ac.uk/ena/browser/support). Get the ERZ accession from `assembly_table` first, identify yourself as a broker, sign on behalf of the Pathoplexus team and CC our Slack channel. Do **not** reset to `READY` - once an ERZ has been assigned (for assemblies) it cannot be retried via the pipeline.
 
 ### 3. Triage the `get_ena_submission_list` cronjob Slack notifications
 
 3.1 Do not submit it. INSDC/GenBank assembly accessions (`insdcAccessionBase`, `insdcVersion`, `insdcAccessionFull`) should never be supplied by a user - this means the sequence most likely already exists in the INSDC. Remove it from the list, and check whether it needs to be revoked on Pathoplexus.
 
-3.2 Do not submit them. There must be ONE unique biosample for EACH sequence - submitting the second sequence would revise the BioSample of the first, incorrectly changing the earlier submission. Remove them from the list and contact the submitter to get the correct biosamples.
+3.2 Do not submit them. There must be ONE unique biosample for EACH sequence - submitting the second sequence would revise the assembly of the first, incorrectly changing the earlier submission. Remove them from the list and contact the submitter to get the correct biosamples.
 
 3.3 Investigate whether the revoked sequence needs to be suppressed on ENA. If so:
 
