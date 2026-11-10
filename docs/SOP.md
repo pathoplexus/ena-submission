@@ -85,9 +85,18 @@ AND started_at < NOW() - INTERVAL '2 days';
 
 - Check the state of the submissions on [ENA](https://www.ebi.ac.uk/ena/submit/webin/login) - sign in using the broker account (be careful as you have full rights using this account!!)
 
-- If you have reached this point in general you will need to file a ticket with the ENA help-desk (via https://www.ebi.ac.uk/ena/browser/support). We have been asked to do this instead of sending emails to ENA directly. (identify yourself as a broker and sign the email as on behalf of the Pathoplexus team), with `ena@pathoplexus.org` and our Slack channel on the first message as described in [Emailing ENA, NCBI and BioSamples](#emailing-ena-ncbi-and-biosamples), see an example here: [Slack](https://loculus.slack.com/archives/C0757PTR607/p1785512654473749)
+- If you have reached this point in general you will need to file a ticket with the ENA help-desk (via https://www.ebi.ac.uk/ena/browser/support). We have been asked to do this instead of sending emails to ENA directly. (identify yourself as a broker and sign the email as on behalf of the Pathoplexus team); set the `from` email to `ena@pathoplexus.org`, add our insdc-deposition Slack channel email as cc, see an example here: [Slack](https://loculus.slack.com/archives/C0757PTR607/p1785512654473749)
 
 - If an ERZ-accession has been assigned you can not retry submissions via the pipeline. This is quite complicated reach out to Anya or Cornelius if you think you need to do this. You will need to resubmit the sequences as a revision using the [dry-run script](https://github.com/loculus-project/loculus/blob/main/ena-submission/scripts/deposition_dry_run.py) (you need a new assembly identifier for revisions) you will also need to get the PPX ena-deposition config to produce the correct flatfiles for submission.
+
+## Emailing ENA, BioSamples and NCBI
+
+Every email or ticket to ENA (help-desk tickets and replies to them), EBI BioSamples and NCBI/NLM should reach the whole team and stay on record:
+
+- Send from `ena@pathoplexus.org` where possible ("Send mail as" in Zoho). Sending from a personal address is fine.
+- Always copy `ena@pathoplexus.org` and the `#insdc-deposition` Slack channel's email address.
+- When opening a ticket, including via the ENA support form, use `ena@pathoplexus.org` as the contact address and copy the Slack address in the first message. ENA's help-desk sends replies to the people on the ticket when it was opened; adding an address to the Cc of a later email does not add it to the ticket. Replies on older tickets may therefore reach only personal addresses and Slack, so check `#insdc-deposition` too.
+- Record the ticket number in the corresponding issue in this repo.
 
 ## Testing on Staging
 
