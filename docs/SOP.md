@@ -6,6 +6,15 @@ Whoever is on ENA duty should go through all open issues **at least once a week*
 
 Additionally, they should check the `pathoplexus-notifications` slack channel **daily** for any new sequences to submit to ENA. Any alerts about submissions that are in an error state or stuck in submitting state for too long should also be reviewed (this will most likely require checking the ena submission database for the error status).
 
+## Emailing ENA, NCBI and BioSamples
+
+Every email and helpdesk ticket about our submissions, whoever sends it, must reach the team's shared record: `ena@pathoplexus.org` and the `#insdc-deposition` Slack channel (its email address is under the channel's details, *Integrations* > *Send emails to this channel*).
+
+- **Send from `ena@pathoplexus.org`** where you can (Zoho "Send mail as"). A personal `@pathoplexus.org` or other address is fine, but then Cc `ena@pathoplexus.org`.
+- **Always Cc the `#insdc-deposition` address**, also when sending from `ena@`.
+- **NCBI/NLM** replies go only to the contact address of the case, not to Cc'd addresses. Open cases with `hello@pathoplexus.org` as the contact, and Cc the Slack address on what you send.
+- Note the ticket or case number and the subject line on the relevant issue in this repo (see [ISSUE_TRACKING.md](ISSUE_TRACKING.md)).
+
 ## `#pathoplexus-notifications` channel review
 
 Twice a day (at 01:00 and 13:00 UTC) the `loculus-get-ena-submission-list-cronjob` will run and send us a JSON file with details of the sequence to submit to ENA in the `#pathoplexus-notifications channel`. This will be in the format: [Slack](https://loculus.slack.com/archives/C07NDUW0171/p1763944251199129). Follow the instructions in the notification.
@@ -48,7 +57,7 @@ If you submit sequences with the wrong biosamples they will need to be resubmitt
 
 ### 3. Sequence Revocation and Suppression
 
-If revoked sequences need to be suppressed on ENA this must be done by filing a ticket with the ENA help-desk (via https://www.ebi.ac.uk/ena/browser/support). 
+If revoked sequences need to be suppressed on ENA this must be done by filing a ticket with the ENA help-desk (via https://www.ebi.ac.uk/ena/browser/support, addressed as in [Emailing ENA, NCBI and BioSamples](#emailing-ena-ncbi-and-biosamples)). 
 
 Then, a list of suppressed sequences (PPX accessionVersion) should be added to the `suppressed/ppx-accessions-suppression-list.txt` file (this just stops us receiving notifications about sequences that need to be suppressed).
 
@@ -58,7 +67,7 @@ python3 add_to_suppressed.py input.json
 ```
 to add the accessionVersions to the suppression list.
 
-Once ENA have confirmed the suppression, request the same suppression at NCBI separately, by emailing biosamplehelp@ncbi.nlm.nih.gov. Name both the assembly and its linked biosample(s) in the request. (NCBI's EBI import pipeline queries only live records, a suppression at EBI never propagates. NCBI expect this to become unnecessary once their "livelists" sync is working.
+Once ENA have confirmed the suppression, request the same suppression at NCBI separately, by emailing biosamplehelp@ncbi.nlm.nih.gov (from `hello@pathoplexus.org`, Cc the Slack address). Name both the assembly and its linked biosample(s) in the request. (NCBI's EBI import pipeline queries only live records, a suppression at EBI never propagates. NCBI expect this to become unnecessary once their "livelists" sync is working.
 
 ### 4. Handling Sequences With HAS_ERRORS or stuck in WAITING state
 
@@ -76,7 +85,7 @@ AND started_at < NOW() - INTERVAL '2 days';
 
 - Check the state of the submissions on [ENA](https://www.ebi.ac.uk/ena/submit/webin/login) - sign in using the broker account (be careful as you have full rights using this account!!)
 
-- If you have reached this point in general you will need to file a ticket with the ENA help-desk (via https://www.ebi.ac.uk/ena/browser/support). We have been asked to do this instead of sending emails to ENA directly. (identify yourself as a broker and sign the email as on behalf of the Pathoplexus team), add our slack channel in CC, see an example here: [Slack](https://loculus.slack.com/archives/C0757PTR607/p1785512654473749)
+- If you have reached this point in general you will need to file a ticket with the ENA help-desk (via https://www.ebi.ac.uk/ena/browser/support). We have been asked to do this instead of sending emails to ENA directly. (identify yourself as a broker and sign the email as on behalf of the Pathoplexus team), with `ena@pathoplexus.org` and our Slack channel on the first message as described in [Emailing ENA, NCBI and BioSamples](#emailing-ena-ncbi-and-biosamples), see an example here: [Slack](https://loculus.slack.com/archives/C0757PTR607/p1785512654473749)
 
 - If an ERZ-accession has been assigned you can not retry submissions via the pipeline. This is quite complicated reach out to Anya or Cornelius if you think you need to do this. You will need to resubmit the sequences as a revision using the [dry-run script](https://github.com/loculus-project/loculus/blob/main/ena-submission/scripts/deposition_dry_run.py) (you need a new assembly identifier for revisions) you will also need to get the PPX ena-deposition config to produce the correct flatfiles for submission.
 
