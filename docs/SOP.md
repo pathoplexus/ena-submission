@@ -76,7 +76,7 @@ AND started_at < NOW() - INTERVAL '2 days';
 
 - Check the state of the submissions on [ENA](https://www.ebi.ac.uk/ena/submit/webin/login) - sign in using the broker account (be careful as you have full rights using this account!!)
 
-- If you have reached this point in general you will need to file a ticket with the ENA help-desk (via https://www.ebi.ac.uk/ena/browser/support). We have been asked to do this instead of sending emails to ENA directly. (identify yourself as a broker and sign the email as on behalf of the Pathoplexus team); address and copy it as described in [Emailing ENA, BioSamples and NCBI](#emailing-ena-biosamples-and-ncbi), see an example here: [Slack](https://loculus.slack.com/archives/C0757PTR607/p1785512654473749)
+- If you have reached this point in general you will need to file a ticket with the ENA help-desk (via https://www.ebi.ac.uk/ena/browser/support). We have been asked to do this instead of sending emails to ENA directly. (identify yourself as a broker and sign the email as on behalf of the Pathoplexus team); set the `from` email to `ena@pathoplexus.org`, add our insdc-deposition Slack channel email as cc, see an example here: [Slack](https://loculus.slack.com/archives/C0757PTR607/p1785512654473749)
 
 - If an ERZ-accession has been assigned you can not retry submissions via the pipeline. This is quite complicated reach out to Anya or Cornelius if you think you need to do this. You will need to resubmit the sequences as a revision using the [dry-run script](https://github.com/loculus-project/loculus/blob/main/ena-submission/scripts/deposition_dry_run.py) (you need a new assembly identifier for revisions) you will also need to get the PPX ena-deposition config to produce the correct flatfiles for submission.
 
