@@ -8,7 +8,7 @@ Additionally, they should check the `pathoplexus-notifications` slack channel **
 
 ## `#pathoplexus-notifications` channel review
 
-Once a day (at midnight) the `loculus-get-ena-submission-list-cronjob` will run and send us a JSON file with details of the sequence to submit to ENA in the `#pathoplexus-notifications channel`. This will be in the format: [Slack](https://loculus.slack.com/archives/C07NDUW0171/p1763944251199129). Follow the instructions in the notification.
+Twice a day (at 01:00 and 13:00 UTC) the `loculus-get-ena-submission-list-cronjob` will run and send us a JSON file with details of the sequence to submit to ENA in the `#pathoplexus-notifications channel`. This will be in the format: [Slack](https://loculus.slack.com/archives/C07NDUW0171/p1763944251199129). Follow the instructions in the notification.
 
 The cronjob returns three types of messages:
 
